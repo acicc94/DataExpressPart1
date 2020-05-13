@@ -2,6 +2,11 @@ extends layout
 
 block content
     h3=title
-
-    p(id='login' class='login') Login
-    p(id='signUp' class='signUp')
+    form(method='post' action='/login')
+        div(id='login' class='login') Login
+    
+    
+    
+    form(method='post' action='/signUp')
+        div(id='signUp' class='signUp' href='/signUp'
+        type='submit') Sign Up

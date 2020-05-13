@@ -20,6 +20,10 @@ const urlEncodedParser = bodyParser.urlencoded({
 });
 
 app.get('/', routes.index);
+app.get('/signUp', routes.signUp)
+app.get('/account',routes.account)
+app.get('/editInfo', routes.editInfo)
+app.get('/login',routes.login)
 
 
 app.listen(3000);
