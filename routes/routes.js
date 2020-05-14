@@ -1,6 +1,5 @@
 const bcrypt = require('bcryptjs');
 
-
 let mongoose = require("mongoose");
 mongoose.Promise = global.Promise;
 mongoose.connect(
