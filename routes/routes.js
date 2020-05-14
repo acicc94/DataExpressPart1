@@ -1,5 +1,5 @@
 const bcrypt = require('bcryptjs');
-const config = require('../config')
+
 
 let mongoose = require("mongoose");
 mongoose.Promise = global.Promise;
@@ -35,8 +35,8 @@ exports.index = (req, res) => {
 
 exports.signUp = (req, res) => {
   res.render("signUp", {
-    title: "sign Up",
-    "config": config
+    title: "sign Up"
+    
   });
   
   salt =  bcrypt.genSaltSync(12);
@@ -46,9 +46,13 @@ exports.signUp = (req, res) => {
 
 
 
-exports.account = (req,res) =>{
-  res.render('account', {
-    title: "account"
+exports.account = (req,res) => {
+  User.findById(req.params.id, (err,user) =>{
+      if(err) return console.error(err);
+      res.render('details', {
+          title: user.Username + "'s Details",
+          user
+      });
   });
 };
 
@@ -60,7 +64,7 @@ exports.editInfo = (req,res) => {
 
 exports.login = (req,res) => {
   res.render('login', {
-    title: 'login',
-    "config": config
+    title: 'login'
   });
 };
+
