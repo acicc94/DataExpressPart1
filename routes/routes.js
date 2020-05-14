@@ -35,6 +35,7 @@ exports.index = (req, res) => {
 exports.signUp = (req, res) => {
   res.render("signUp", {
     title: "sign Up"
+    
   });
   
   salt =  bcrypt.genSaltSync(12);
@@ -44,9 +45,13 @@ exports.signUp = (req, res) => {
 
 
 
-exports.account = (req,res) =>{
-  res.render('account', {
-    title: "account"
+exports.account = (req,res) => {
+  User.findById(req.params.id, (err,user) =>{
+      if(err) return console.error(err);
+      res.render('details', {
+          title: user.Username + "'s Details",
+          user
+      });
   });
 };
 
@@ -61,3 +66,4 @@ exports.login = (req,res) => {
     title: 'login'
   });
 };
+
