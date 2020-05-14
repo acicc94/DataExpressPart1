@@ -39,9 +39,28 @@ exports.signUp = (req, res) => {
     
   });
   
+  
+};
+
+exports.createUser = (req, res) => {
   salt =  bcrypt.genSaltSync(12);
-  hash = bcrypt.hashSync(userSchema.Password,salt);
-  console.log(hash);
+  hash = bcrypt.hashSync(req.body.password, salt);
+  let user = new User({
+    Username: req.body.username,
+    Password: hash,
+    email: req.body.email,
+    age: req.body.age
+    /* Uncomment when sign up PUG is finished
+    Q1: req.body.Q1,
+    Q2: req.body.Q2,
+    Q3: req.body.Q3
+    */
+  })
+  user.save((err, user) => {
+    if (err) return console.error(err);
+    console.log(req.body.username + ' added');
+  });
+  res.redirect('/login');
 };
 
 
