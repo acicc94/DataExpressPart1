@@ -23,8 +23,9 @@ app.get('/', routes.index);
 app.get('/signUp', routes.signUp);
 app.post('/signUp',urlEncodedParser,routes.createUser);
 app.get('/account',routes.account);
-app.get('/editInfo', routes.editInfo);
+app.get('/editInfo/:userId', routes.editInfo);
 app.get('/login',routes.login);
+app.post('/account',urlEncodedParser,routes.checkLogin);
 
 
 

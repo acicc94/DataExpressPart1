@@ -1,4 +1,4 @@
-const bcrypt = require('bcryptjs');
+const bcrypt = require("bcryptjs");
 
 let mongoose = require("mongoose");
 mongoose.Promise = global.Promise;
@@ -6,9 +6,6 @@ mongoose.connect(
   "mongodb+srv://DRoberts:kjlznSK3OYevJB7d@cluster0-wfrbk.mongodb.net/test?retryWrites=true&w=majority",
   { useUnifiedTopology: true, useNewUrlParser: true }
 );
-
- 
-
 
 let mdb = mongoose.connection;
 mdb.on("error", console.error.bind(console, "connection error:"));
@@ -34,55 +31,83 @@ exports.index = (req, res) => {
 
 exports.signUp = (req, res) => {
   res.render("signUp", {
-    title: "sign Up"
-    
+    title: "sign Up",
   });
-  
-  
 };
 
 exports.createUser = (req, res) => {
-  salt =  bcrypt.genSaltSync(12);
+  salt = bcrypt.genSaltSync(12);
   hash = bcrypt.hashSync(req.body.password, salt);
   let user = new User({
     Username: req.body.username,
     Password: hash,
     email: req.body.email,
-    age: req.body.age
-    /* Uncomment when sign up PUG is finished
+    age: req.body.age,
     Q1: req.body.Q1,
     Q2: req.body.Q2,
-    Q3: req.body.Q3
-    */
-  })
+    Q3: req.body.Q3,
+  });
   user.save((err, user) => {
     if (err) return console.error(err);
-    console.log(req.body.username + ' added');
+    console.log(req.body.username + " added");
   });
-  res.redirect('/login');
+  res.redirect("/login");
 };
 
+exports.account = (req, res) => {
+  User.findById(req.params.id, (err, user) => {
+    if (err) return console.error(err);
+    res.render("details", {
+      title: user.Username + "'s Details",
+      user,
+    });
+  });
+};
 
-
-exports.account = (req,res) => {
-  User.findById(req.params.id, (err,user) =>{
-      if(err) return console.error(err);
-      res.render('details', {
-          title: user.Username + "'s Details",
-          user
+exports.editInfo = (req, res) => {
+  User.findById(req.params.userId, (err, user) => {
+    if (err) {
+      res.render("account", {
+        title: user.Username + "'s Details",
+        user,
       });
+      return;
+    }
+    console.log(req.params.id);
+    console.log(user);
+    res.render("editInfo", {
+      title: "Edit Info",
+      user: user,
+    });
   });
 };
 
-exports.editInfo = (req,res) => {
-  res.render('editInfo', {
-    title: 'Edit Info'
+exports.login = (req, res) => {
+  res.render("login", {
+    title: "login",
   });
 };
 
-exports.login = (req,res) => {
-  res.render('login', {
-    title: 'login'
+exports.checkLogin = (req, res) => {
+  User.findOne({ Username: req.body.username }, (err, user) => {
+    if (err) {
+      res.render("login", {
+        title: "login",
+      });
+      return;
+    } else {
+      bcrypt.compare(req.body.password, user.Password, (err, login) => {
+        if (login) {
+          res.render("account", {
+            title: user.Username + "'s Details",
+            user,
+          });
+        } else {
+          res.render("login", {
+            title: "login",
+          });
+        }
+      });
+    }
   });
 };
-
