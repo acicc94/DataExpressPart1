@@ -24,6 +24,10 @@ html {
     color: #fff;
   }
 
+  label{
+    font-size: 15px;
+  }
+
   /* label {
     background: rgb(61, 131, 197);
     color: #000;
