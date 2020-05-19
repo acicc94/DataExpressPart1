@@ -1,12 +1,9 @@
 extends layout
 
 block content
-    form(method='post' action='/account/' + user.id)
+    form(method='post' action='/editInfo')
         label(for="username") Username &nbsp;
             input(type='text', name = 'username', value=user.Username)
-        br
-        label(for="password") password:&nbsp;
-            input(type='password', name='password', value=user.Password)
         br
         label(for="email") email:&nbsp;
             input(type='text', name='email', value=user.email)

@@ -55,34 +55,25 @@ exports.createUser = (req, res) => {
 };
 
 exports.account = (req, res) => {
-  User.findById(req.params.id, (err, user) => {
-    if (err) return console.error(err);
-    res.render("details", {
-      title: user.Username + "'s Details",
-      user,
-    });
-  });
+  res.render('account',{
+    title: "account",
+    user: req.session.user
+  })
 };
 
 
 
 exports.editInfo = (req, res) => {
-  User.findById(req.params.id, (err, user) => {
-    if (err) return console.error(err);
     res.render('editInfo', {
       title: 'Edit Info',
-      user
+      user: req.session.user
     });
-  });
 };
 
 exports.editUser = (req, res) => {
-  User.findById(req.params.id, (err, user) => {
+  User.findOne({Username: req.session.user.Username}, (err, user) => {
     if (err) return console.error(err);
-    salt = bcrypt.genSaltSync(12);
-    hash = bcrypt.hashSync(req.body.password, salt);
     user.Username = req.body.username;
-    user.password = hash;
     user.email = req.body.email;
     user.age = req.body.age,
     user.Q1 = req.body.Q1,
@@ -91,9 +82,11 @@ exports.editUser = (req, res) => {
     user.save((err, user) => {
       if (err) return console.error(err);
       console.log(req.body.username + ' updated.');
+      req.session.user = user
+      res.redirect('/account');
     });
   });
-  res.redirect('/account/' + user.id);
+  
 };
 
 
@@ -110,7 +103,7 @@ exports.login = (req, res) => {
 
 
 exports.checkLogin = (req, res) => {
-  User.findOne({ Username: req.body.username }, (err, user) => {
+  User.findOne({Username: req.body.username}, (err, user) => {
     if (err) {
       res.render("login", {
         title: "login",
@@ -119,14 +112,10 @@ exports.checkLogin = (req, res) => {
     } else {
       bcrypt.compare(req.body.password, user.Password, (err, login) => {
         if (login) {
-          res.render("account", {
-            title: user.Username + "'s Details",
-            user,
-          });
+          req.session.user = user,
+          res.redirect('/account')
         } else {
-          res.render("login", {
-            title: "login",
-          });
+          res.redirect("/login");
         }
       });
     }
