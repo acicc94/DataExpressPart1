@@ -64,6 +64,8 @@ exports.account = (req, res) => {
   });
 };
 
+
+
 exports.editInfo = (req, res) => {
   User.findById(req.params.userId, (err, user) => {
     if (err) {
@@ -82,11 +84,18 @@ exports.editInfo = (req, res) => {
   });
 };
 
+
+
+
 exports.login = (req, res) => {
   res.render("login", {
     title: "login",
   });
 };
+
+
+
+
 
 exports.checkLogin = (req, res) => {
   User.findOne({ Username: req.body.username }, (err, user) => {

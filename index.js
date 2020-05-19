@@ -19,6 +19,14 @@ const urlEncodedParser = bodyParser.urlencoded({
     extended: true
 });
 
+const checkAuth = (req, res, next) => {
+    if (req.session.user && req.session.user.isAuthenticated) {
+      next();
+    } else {
+      res.redirect("/");
+    }
+  };
+
 app.get('/', routes.index);
 app.get('/signUp', routes.signUp);
 app.post('/signUp',urlEncodedParser,routes.createUser);
