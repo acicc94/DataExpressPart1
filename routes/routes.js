@@ -45,7 +45,7 @@ exports.createUser = (req, res) => {
     age: req.body.age,
     Q1: req.body.Q1,
     Q2: req.body.Q2,
-    Q3: req.body.Q3,
+    Q3: req.body.Q3
   });
   user.save((err, user) => {
     if (err) return console.error(err);
@@ -67,21 +67,33 @@ exports.account = (req, res) => {
 
 
 exports.editInfo = (req, res) => {
-  User.findById(req.params.userId, (err, user) => {
-    if (err) {
-      res.render("account", {
-        title: user.Username + "'s Details",
-        user,
-      });
-      return;
-    }
-    console.log(req.params.id);
-    console.log(user);
-    res.render("editInfo", {
-      title: "Edit Info",
-      user: user,
+  User.findById(req.params.id, (err, user) => {
+    if (err) return console.error(err);
+    res.render('editInfo', {
+      title: 'Edit Info',
+      user
     });
   });
+};
+
+exports.editUser = (req, res) => {
+  User.findById(req.params.id, (err, user) => {
+    if (err) return console.error(err);
+    salt = bcrypt.genSaltSync(12);
+    hash = bcrypt.hashSync(req.body.password, salt);
+    user.Username = req.body.username;
+    user.password = hash;
+    user.email = req.body.email;
+    user.age = req.body.age,
+    user.Q1 = req.body.Q1,
+    user.Q2 = req.body.Q2,
+    user.Q3 = req.body.Q3
+    user.save((err, user) => {
+      if (err) return console.error(err);
+      console.log(req.body.username + ' updated.');
+    });
+  });
+  res.redirect('/account/' + user.id);
 };
 
 
