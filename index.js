@@ -3,7 +3,7 @@ const pug = require('pug');
 const cookie_parser = require('cookie-parser');
 const bcrypt = require('bcryptjs');
 const mongoose = require('mongoose');
-const express_sessions = require('express-sessions');
+const express_session = require('express-session');
 const path = require('path');
 const bodyParser = require('body-parser');
 const routes = require('./routes/routes')
@@ -21,14 +21,37 @@ const urlEncodedParser = bodyParser.urlencoded({
     extended: true
 });
 
+
+
+const checkAuth = (req, res, next) => {
+    if (req.session.user) {
+      next();
+    } else {
+      res.redirect("/");
+    }
+};
+
+app.use(express_session({
+    secret: "what",
+    saveUninitialized: true,
+    resave: true,
+  })
+);
+
+
+
 app.get('/', routes.index);
 app.get('/signUp', routes.signUp);
 app.post('/signUp',urlEncodedParser,routes.createUser);
-app.get('/account/:id',routes.account);
-app.get('/editInfo/:id', routes.editInfo);
-app.post('/editInfo/:id', urlEncodedParser, routes.editUser);
+app.get('/account',checkAuth,routes.account);
+app.get('/editInfo', routes.editInfo);
+app.post('/editInfo', urlEncodedParser, routes.editUser);
 app.get('/login',routes.login);
 app.post('/account',urlEncodedParser,routes.checkLogin);
+app.get('/api', routes.api);
+
+
+
 
 // app.use(cookieParser('This is my passphrase'));
 
