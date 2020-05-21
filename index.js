@@ -10,7 +10,6 @@ const routes = require('./routes/routes')
 const cookieParser = require('cookie-parser');
 let visited = 0;
 
-
 const app = express();
 
 app.set('view engine', 'pug');
@@ -50,27 +49,24 @@ app.get('/login',routes.login);
 app.post('/account',urlEncodedParser,routes.checkLogin);
 app.get('/api', routes.api);
 
+app.use(cookieParser('This is my passphrase'));
 
+app.get('/', (req, res) => {
+  visited++;
+  res.cookie('visited', visited, {maxAge: 99999999999});
+  if(req.cookies.beenHereBefore == 'yes') {
+    res.send(`You have been here ${req.cookies.visited} times before.`);
+  } else {
+    res.cookie('beenHereBefore', 'yes', {maxAge: 99999999999});
+    res.cookie('visited', 0, {maxAge: 99999999999});
+    res.send('This is your first time here');
+  }
+});
 
-
-// app.use(cookieParser('This is my passphrase'));
-
-// app.get('/', (req, res) => {
-//   visited++;
-//   res.cookie('visited', visited, {maxAge: 99999999999});
-//   if(req.cookies.beenHereBefore == 'yes') {
-//     res.send(`You have been here ${req.cookies.visited} times before.`);
-//   } else {
-//     res.cookie('beenHereBefore', 'yes', {maxAge: 99999999999});
-//     res.cookie('visited', 0, {maxAge: 99999999999});
-//     res.send('This is your first time here');
-//   }
-// });
-
-// app.get('/clear', (req, res) => {
-//   res.clearCookie('beenHereBefore');
-//   res.cookie('visited', 0, {maxAge: 99999999999});
-//   res.redirect('/');
-// });
+app.get('/clear', (req, res) => {
+  res.clearCookie('beenHereBefore');
+  res.cookie('visited', 0, {maxAge: 99999999999});
+  res.redirect('/');
+});
 
 app.listen(3000);
