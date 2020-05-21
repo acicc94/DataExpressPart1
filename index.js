@@ -10,6 +10,7 @@ const routes = require('./routes/routes')
 const cookieParser = require('cookie-parser');
 let visited = 0;
 
+
 const app = express();
 
 app.set('view engine', 'pug');
