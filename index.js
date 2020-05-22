@@ -47,6 +47,7 @@ app.get('/editInfo', routes.editInfo);
 app.post('/editInfo', urlEncodedParser, routes.editUser);
 app.get('/login',routes.login);
 app.post('/account',urlEncodedParser,routes.checkLogin);
+app.get('/logout',routes.logout)
 
 
 

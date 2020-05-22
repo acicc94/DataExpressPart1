@@ -1,26 +1,47 @@
 extends layout
 
 block content
+    
     form(method='post' action='/signUp')
-        label(for="username") UserName &nbsp;
-            input(type='text', name = 'username')
+        div(class='cosmetic')
+            input(type='text', name = 'username',class='input',placeholder="")
+            label(for="username") UserName &nbsp;
+            
         br
-        label(for="password") password:&nbsp;
-            input(type='password', name='password')
+        div(class='cosmetic')
+            input(type='password', name='password',class='input',placeholder="")
+            label(for="password") password:&nbsp;
         br
-        label(for="email") email:&nbsp;
-            input(type='text', name='email')
+        div(class='cosmetic')
+            input(type='email', name='email',class='input',placeholder="")
+            label(for="email") email:&nbsp;
         br
-        label(for="age") age:&nbsp;
-            input(type='text', name='age')
+        div(class='cosmetic')
+            input(type='text', name='age',class='input',placeholder="")
+            label(for="age") age:&nbsp;
         br
-        label(for="Q1") What is your mothers maiden name?
-            input(type='text', name='Q1')
+        label(for="Q1") What is favorite Color?
+        select(name="Q1") Options
+            option(value="red") red
+            option(value="blue") blue
+            option(value="green") green
+            option(value="yellow") yellow
+
         br
-        label(for="Q2") Name of your first dog?
-            input(type='text', name='Q2')
+        label(for="Q2") favorite food?
+        select(name="Q2")
+            option(value="pizza") pizza
+            option(value="cheeseBurger") Cheese Burger
+            option(value="iceCream") Ice Cream
+            option(value="steak") Steak
+
         br
-        label(for="Q3") In what town or city was your first full time job?
-            input(type='text', name='Q3')
+        label(for="Q3") Favorite type of music?
+        select(name="Q3")
+            option(value='classical') classical
+            option(value='rock') Rock
+            option(value='rap') Rap
+            option(value='edm') EDM
+
         br
-        input(type='submit' value='submit')   
+        input(type='submit' value='submit' class='submitButton')   

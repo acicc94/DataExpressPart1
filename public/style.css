@@ -1,32 +1,116 @@
 html {
-    background: rgb(61, 131, 197);
-    color: #000;
-    padding: 20px;
-  }
-  
-  .menu_item {
-    display: inline-block;
-    border: 1px solid #fff;
-    width: 80px;
-    margin: 5px;
-    padding: 5px;
-    text-align: center;
-    background: #428;
-    user-select: none;
-  }
-  
-  li {
-    list-style: none;
-  }
-  
-  a {
-    text-decoration: none;
+    background:#000;
     color: #fff;
-  }
+    padding: 20px;
+}
+  
+.menu_item {
+  display: inline-block;
+  border: 1px solid #fff;
+  width: 80px;
+  margin: 5px;
+  padding: 5px;
+  text-align: center;
+  background: #428;
+  user-select: none;
+}
+  
+li {
+  list-style: none;
+}
+  
+a {
+  text-decoration: none;
+  color: #fff;
+}
 
-  label{
-    font-size: 15px;
-  }
+label{
+  font-size: 15px;
+}
+
+.from{
+  --text-color:#afafaf;
+  max-width: 500px;
+}
+.cosmetic{
+  width: 100%;
+  position: relative;
+  border-bottom: 2px dashed var(--text-color);
+  margin: 4rem auto 1rem;
+}
+
+.label{
+  color: var(--text-color);
+  font-size: 1.2rem;
+}
+
+.input {
+  outline: none;
+  border: none;
+  overflow: hidden;
+  margin: 0;
+  width: 100%;
+  padding: 0.30rem 0;
+  background:none;
+  color: #fff;
+  font-size: 1.2rem;
+  font-weight: bold;
+}
+
+.input:valid {
+  color: #00cc00;
+}
+
+.input:inValid {
+  color: #ff0000;
+}
+
+.cosmetic::after {
+  content: "";
+  position: relative;
+  display: block;
+  height: 4px;
+  background: #d16df1;
+  transform: scaleX(0);
+  transform-origin: 0%;
+  transition: transform 400ms ease;
+  top: 2px;
+}
+
+.cosmetic:focus-within {
+  border-color: transparent;
+}
+
+.cosmetic:focus-within::after {
+  transform: scaleX(1);
+}
+
+.label {
+  z-index: -1;
+  position: absolute;
+  transform: translateY(-2rem);
+  transform-origin: 0%;
+  transition: transform 400ms;
+}
+
+.consmetic:focus-within.label,
+.input:not(:placeholder-shown)+ .label {
+  transform: scale(0.8) translateY(-5rem);
+}
+
+
+
+
+
+
+
+
+
+.login{
+  background-color: #00cc00;
+  border: #ff0000;
+}
+
 
   /* label {
     background: rgb(61, 131, 197);
