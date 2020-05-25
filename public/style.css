@@ -29,6 +29,7 @@ a:hover {
 form {
   --text-color: #ffffff;
   max-width: 500px;
+  margin: 0 auto;
 }
 .cosmetic {
   width: 100%;
@@ -124,6 +125,10 @@ form {
   margin: 50% auto;
   padding: 5px auto;
   
+}
+
+canvas {
+  background: #fff;
 }
 
 
