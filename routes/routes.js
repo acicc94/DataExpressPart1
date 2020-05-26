@@ -138,53 +138,61 @@ exports.api = async(req, res) => {
 
   const questionData = {
     "Question 1": [
-      0, 0, 0
+      0, 0, 0, 0
     ],
     "Question 2": [
-      0, 0, 0
+      0, 0, 0, 0
     ],
     "Question 3": [
-      0, 0, 0
+      0, 0, 0, 0
     ]
   };
 
   const cursor = User.find().cursor();
 
   for (let user = await cursor.next(); user != null; user = await cursor.next()) {
-    // replace 'answer x' with the actual answers
     switch (user.Q1) {
-      case "answer 1":
+      case "red":
         questionData[0][0] += 1;
         break;
-      case "answer 2":
+      case "blue":
         questionData[0][1] += 1;
         break;
-      case "answer 3":
+      case "green":
         questionData[0][2] += 1;
+        break;
+      case "yellow":
+        questionData[0][3] += 1;
         break;
     }
 
     switch (user.Q2) {
-      case "answer 1":
+      case "pizza":
         questionData[1][0] += 1;
         break;
-      case "answer 2":
+      case "cheeseBurger":
         questionData[1][1] += 1;
         break;
-      case "answer 3":
+      case "iceCream":
         questionData[1][2] += 1;
+        break;
+      case "steak":
+        questionData[1][3] += 1;
         break;
     }
 
     switch (user.Q3) {
-      case "answer 1":
+      case "classical":
         questionData[2][0] += 1;
         break;
-      case "answer 2":
+      case "rock":
         questionData[2][1] += 1;
         break;
-      case "answer 3":
+      case "rap":
         questionData[2][2] += 1;
+        break;
+      case "edm":
+        questionData[2][3] += 1;
         break;
     }
   }
