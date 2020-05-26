@@ -112,6 +112,9 @@ exports.checkLogin = (req, res) => {
       return;
     } else {
       bcrypt.compare(req.body.password, user.Password, (err, login) => {
+        if(err) {
+          console.log(err)
+        }
         if (login) {
           req.session.user = user,
             res.redirect('/account')

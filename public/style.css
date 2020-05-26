@@ -131,6 +131,12 @@ canvas {
   background: #fff;
 }
 
+.account {
+  position: relative;
+  margin: 0 auto;
+  text-align: center;
+}
+
 
 
 

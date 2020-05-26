@@ -1,21 +1,22 @@
 extends layout
 
 block content
-    p Name: #{user.Username}
-    p Age: #{user.age}
-    p Email #{user.email}
-    p Question 1 #{user.Q1}
-    p Question 2 #{user.Q2}
-    p Question 3 #{user.Q3}
+    div(class="account")
+        p Name: #{user.Username}
+        p Age: #{user.age}
+        p Email: #{user.email}
+        p Question 1: #{user.Q1}
+        p Question 2: #{user.Q2}
+        p Question 3: #{user.Q3}
 
-    br
+        br
 
-    canvas(id="canvasContent", class='canvasColor')
+        canvas(id="canvasContent", class='canvasColor')
 
-    p
-    #menu
-        a(href="/editInfo") Edit account info
+        p
+        #menu
+            a(href="/editInfo") Edit account info
     
-    p
-    #logOut
-        a(href="/logout") Logout
+        p
+        #logOut
+            a(href="/logout") Logout
