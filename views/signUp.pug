@@ -4,39 +4,30 @@ block content
     
     form(method='post' action='/signUp')
         div(class='cosmetic')
-            input(type='text', name = 'username',class='input',placeholder="")
-            label(for="username") UserName &nbsp;
-            
-        br
+            input(type='text', name = 'username',class='input',placeholder="User Name:")
+            label(for="username", class='label')
         div(class='cosmetic')
-            input(type='password', name='password',class='input',placeholder="")
-            label(for="password") password:&nbsp;
-        br
+            input(type='password', name='password',class='input',placeholder="Password:")
+            label(for="password", class='label')
         div(class='cosmetic')
-            input(type='email', name='email',class='input',placeholder="")
-            label(for="email") email:&nbsp;
-        br
+            input(type='email', name='email',class='input',placeholder="Email")
+            label(for="email", class='label')
         div(class='cosmetic')
-            input(type='text', name='age',class='input',placeholder="")
-            label(for="age") age:&nbsp;
-        br
-        label(for="Q1") What is favorite Color?
+            input(type='text', name='age',class='input',placeholder="Age:")
+            label(for="age", class='label')
+        label(for="Q1") What is favorite Color?&nbsp;
         select(name="Q1") Options
             option(value="red") red
             option(value="blue") blue
             option(value="green") green
             option(value="yellow") yellow
-
-        br
-        label(for="Q2") favorite food?
+        label(for="Q2") favorite food?  &nbsp;
         select(name="Q2")
             option(value="pizza") pizza
             option(value="cheeseBurger") Cheese Burger
             option(value="iceCream") Ice Cream
             option(value="steak") Steak
-
-        br
-        label(for="Q3") Favorite type of music?
+        label(for="Q3") Favorite type of music? &nbsp;
         select(name="Q3")
             option(value='classical') classical
             option(value='rock') Rock

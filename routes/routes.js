@@ -132,7 +132,9 @@ exports.logout = (req,res) =>{
       res.redirect("/");
     }
   });
-  exports.api = async (req, res) => {
+}
+
+exports.api = async(req, res) => {
 
   const questionData = {
     "Question 1": [

@@ -2,22 +2,33 @@ extends layout
 
 block content
     form(method='post' action='/editInfo')
-        label(for="username") Username &nbsp;
-            input(type='text', name = 'username', value=user.Username)
+        div(class='cosmetic')
+            input(type='text', name = 'username',class='input',placeholder="User Name:")
+            label(for="username", class='label')
+        div(class='cosmetic')
+            input(type='email', name='email',class='input',placeholder="Email")
+            label(for="email", class='label')
+        div(class='cosmetic')
+            input(type='text', name='age',class='input',placeholder="Age:")
+            label(for="age", class='label')
+        label(for="Q1") What is favorite Color?&nbsp;
+        select(name="Q1") Options
+            option(value="red") red
+            option(value="blue") blue
+            option(value="green") green
+            option(value="yellow") yellow
+        label(for="Q2") favorite food?  &nbsp;
+        select(name="Q2")
+            option(value="pizza") pizza
+            option(value="cheeseBurger") Cheese Burger
+            option(value="iceCream") Ice Cream
+            option(value="steak") Steak
+        label(for="Q3") Favorite type of music? &nbsp;
+        select(name="Q3")
+            option(value='classical') classical
+            option(value='rock') Rock
+            option(value='rap') Rap
+            option(value='edm') EDM
+
         br
-        label(for="email") email:&nbsp;
-            input(type='text', name='email', value=user.email)
-        br
-        label(for="age") age:&nbsp;
-            input(type='text', name='age', value=user.age)
-        br
-        label(for="Q1") What is your mothers maiden name?
-            input(type='text', name='Q1', value=user.Q1)
-        br
-        label(for="Q2") Name of your first dog?
-            input(type='text', name='Q2', value=user.Q2)
-        br
-        label(for="Q3") In what town or city was your first full time job?
-            input(type='text', name='Q3', value=user.Q3)
-        br
-        input(type='submit' value='submit')   
+        input(type='submit' value='submit' class='submitButton')     
