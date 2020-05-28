@@ -2,6 +2,8 @@ extends layout
 
 block content
     div(class="account")
+        div(id="whatever")
+            img(id="picture" src="https://api.adorable.io/avatars/face/eyes5/nose7/mouth2/8e8895")
         p Name: #{user.Username}
         p Age: #{user.age}
         p Email: #{user.email}
@@ -11,6 +13,7 @@ block content
 
         br
 
+        
         canvas(id="canvasContent", class='canvasColor')
 
         p

@@ -4,7 +4,22 @@ const ctx = canvas.getContext('2d');
 canvas.width = 600;
 canvas.height = 400;
 
-const drawStuff = () =>{};
+const drawStuff = () =>{
+    ctx.fillRect(0,300,30,100)
+    ctx.fillStyle = '#ff1493';
+
+    ctx.fillRect(25,300, 30,100)
+    ctx.fillStyle = '#ff0000';
+
+
+
+};
+
+
+
+
+
+
 
 
 
@@ -24,3 +39,7 @@ const loop  = () =>{
 };
 
 setInterval(loop, 10);
+
+
+
+
