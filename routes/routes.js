@@ -140,13 +140,13 @@ exports.logout = (req,res) =>{
 exports.api = async(req, res) => {
 
   const questionData = {
-    "Question 1": [
+    "Question1" : [
       0, 0, 0, 0
     ],
-    "Question 2": [
+    "Question2" : [
       0, 0, 0, 0
     ],
-    "Question 3": [
+    "Question3" : [
       0, 0, 0, 0
     ]
   };
@@ -156,46 +156,46 @@ exports.api = async(req, res) => {
   for (let user = await cursor.next(); user != null; user = await cursor.next()) {
     switch (user.Q1) {
       case "red":
-        questionData[0][0] += 1;
+        questionData.Question1[0] += 1;
         break;
       case "blue":
-        questionData[0][1] += 1;
+        questionData.Question1[1] += 1;
         break;
       case "green":
-        questionData[0][2] += 1;
+        questionData.Question1[2] += 1;
         break;
       case "yellow":
-        questionData[0][3] += 1;
+        questionData.Question1[3] += 1;
         break;
     }
 
     switch (user.Q2) {
       case "pizza":
-        questionData[1][0] += 1;
+        questionData.Question2[0] += 1;
         break;
       case "cheeseBurger":
-        questionData[1][1] += 1;
+        questionData.Question2[1] += 1;
         break;
       case "iceCream":
-        questionData[1][2] += 1;
+        questionData.Question2[2] += 1;
         break;
       case "steak":
-        questionData[1][3] += 1;
+        questionData.Question2[3] += 1;
         break;
     }
 
     switch (user.Q3) {
       case "classical":
-        questionData[2][0] += 1;
+        questionData.Question3[0] += 1;
         break;
       case "rock":
-        questionData[2][1] += 1;
+        questionData.Question3[1] += 1;
         break;
       case "rap":
-        questionData[2][2] += 1;
+        questionData.Question3[2] += 1;
         break;
       case "edm":
-        questionData[2][3] += 1;
+        questionData.Question3[3] += 1;
         break;
     }
   }
