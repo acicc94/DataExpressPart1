@@ -141,7 +141,7 @@ exports.api = async(req, res) => {
 
   const questionData = {
     "Question1" : [
-      0, 0, 0, 0
+     0, 0, 0, 0
     ],
     "Question2" : [
       0, 0, 0, 0
