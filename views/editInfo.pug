@@ -2,6 +2,9 @@ extends layout
 
 block content
     form(method='post' action='/editInfo')
+        div(class='ProfilePic')
+            input(type='text', number = 'userNumber', class='input', placeholder='User number:')
+            label(for='userNumber', class = 'label')
         div(class='cosmetic')
             input(type='text', name = 'username',class='input',placeholder="User Name:")
             label(for="username", class='label')
