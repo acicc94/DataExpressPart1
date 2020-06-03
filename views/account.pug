@@ -2,8 +2,8 @@ extends layout
 
 block content
     div(class="account")
-        var profilePic = "https://api.adorable.io/avatars/face/eyes5/nose7/mouth2/8e8895"
-        img(src=profilePic)
+        div
+          img(id=profilePic src="https://api.adorable.io/avatars/face/1/1/1/8e8895")
         p Name: #{user.Username}
         p Age: #{user.age}
         p Email: #{user.email}
